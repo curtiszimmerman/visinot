@@ -20,7 +20,7 @@
 
 __version__ = "0.0.1a"
 
-def notify( image ):
+def trigger( image ):
 	return 0
 
 def main():
@@ -28,14 +28,18 @@ def main():
 	import time
 
 	# initialize camera
-
+	# this.image = last.image = reference.image = cam.getImage()
 	# while forever:
 	#	img = cam.getImage()
-	#	timestamp
-	#	if (no reference.timestamp):
-	#		reference.image = this.image
-	#	if (no last.image):
-	# 
+	#	timestamp = time()
+	#	trigger = False
+	#	if (!reference.timestamp) reference.image = this.image
+	#	if (this.image.data !== reference.image.data):
+	#		trigger = True
+	#	if (!last.image) last.image = this.image
+	#	if (this.image.data !== last.image.data):
+	#		trigger = True
+	#	if (trigger) trigger(this.image)
 	#	if (this.timestamp - ten minutes) is greater than reference.timestamp:
 	#		reference.image = this.image
 	#		last.image = this.image
