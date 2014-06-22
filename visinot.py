@@ -25,6 +25,7 @@ def trigger( image ):
 
 def main():
 	from SimpleCV import Camera, Color, Display, Image
+	import random
 	import time
 
 	# initialize camera
@@ -46,7 +47,7 @@ def main():
 	#	time.sleep(0.4)
 
 	# init camera with forced dimensions
-	cam = Camera(0, {"width": 640, "height": 480})
+	cam = Camera(0, {"width": 1366, "height": 768})
 	# live camera view
 	#cam.live()
 
@@ -77,8 +78,8 @@ def main():
 		#	img.save(display)
 		#	img.save("painting.png")
 		#time.sleep(0.1)
-		x = random.randint(0,640)
-		y = random.randint(0,480)
+		x = random.randint(0,1366)
+		y = random.randint(0,768)
 		img = cam.getImage()
 		img.drawText(time.ctime(time.time()), x, y)
 		img.save(display)
