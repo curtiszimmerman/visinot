@@ -24,11 +24,10 @@ def trigger( image ):
 	return 0
 
 def main():
-	from SimpleCV import Camera, Color, Display, Image
-	import random
+	from SimpleCV import Camera, Color, Display, JpegStreamCamera, Image
 	import time
 
-	print ""
+	print "[+] Initializing VisiNot v"+__version__
 	# initialize camera
 	# this.image = last.image = reference.image = cam.getImage()
 	# while forever:
@@ -46,21 +45,29 @@ def main():
 	#		reference.image = this.image
 	#		last.image = this.image
 	#	time.sleep(0.4)
+	size_image_height = 1366
+	size_image_width = 768
+	interval = 5
 
+	print "[+] Initializing image source"
 	# init camera with forced dimensions (720p)
-	cam = Camera(0, {"width": 1366, "height": 768})
-	winsize = (1366, 768)
+	camera = Camera(0, {"width": size_image_width, "height": size_image_height})
+	#cam = JpegStreamCamera("http://ubnt:ubnt@cam.sulfurworks.net/cam1")
+	winsize = (size_image_width, size_image_height)
 
 	# init display for debugging
 	display = Display(winsize)
 
 	# capture initial image
-	img = cam.getImage()
+	image_initial = camera.getImage()
 	
 	# timestamp the image
 	timestamp = time.time()
-	img.drawText(time.ctime(timestamp), 10, 10)
-	img.save(display)
+	image_initial.drawText(time.ctime(timestamp), 10, 10)
+	image_initial.save(display)
+
+	last_image = image_initial
+	reference_image = image_initial
 
 	print "i launched a winder!"
 	# get logo
@@ -82,8 +89,8 @@ def main():
 	#	img = cam.getImage()
 	#	img.drawText(time.ctime(time.time()), x, y)
 	#img.save(display)
-	img.save("test.png")
-	time.sleep(5)
+	image_initial.save("test.png")
+	time.sleep(interval)
 
 if __name__ == "__main__":
 	main()
