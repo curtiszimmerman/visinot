@@ -28,6 +28,7 @@ def main():
 	import random
 	import time
 
+	print ""
 	# initialize camera
 	# this.image = last.image = reference.image = cam.getImage()
 	# while forever:
@@ -46,21 +47,19 @@ def main():
 	#		last.image = this.image
 	#	time.sleep(0.4)
 
-	# init camera with forced dimensions
+	# init camera with forced dimensions (720p)
 	cam = Camera(0, {"width": 1366, "height": 768})
-	# live camera view
-	#cam.live()
+	winsize = (1366, 768)
 
-
-	winsize = (640, 480)
-	# init display
+	# init display for debugging
 	display = Display(winsize)
 
-	# capture an Image
-	#img = cam.getImage()
-	# draw text on image at x, y
-	#img.drawText("-=< FOO TEST >=-", 60, 20)
-	img = Image(winsize)
+	# capture initial image
+	img = cam.getImage()
+	
+	# timestamp the image
+	timestamp = time.time()
+	img.drawText(time.ctime(timestamp), 10, 10)
 	img.save(display)
 
 	print "i launched a winder!"
@@ -72,19 +71,19 @@ def main():
 	#img.show(type="browser")
 
 	# do not close right away
-	while not display.isDone():
+	#while not display.isDone():
 		#if display.mouseLeft:
 		#	img.dl().circle((display.mouseX, display.mouseY), 4, Color.BLUE, filled=True)
 		#	img.save(display)
 		#	img.save("painting.png")
-		#time.sleep(0.1)
-		x = random.randint(0,1366)
-		y = random.randint(0,768)
-		img = cam.getImage()
-		img.drawText(time.ctime(time.time()), x, y)
-		img.save(display)
-		img.save("thing.png")
-		time.sleep(1)
+	#	#time.sleep(0.1)
+	#	x = random.randint(0,1366)
+	#	y = random.randint(0,768)
+	#	img = cam.getImage()
+	#	img.drawText(time.ctime(time.time()), x, y)
+	#img.save(display)
+	img.save("test.png")
+	time.sleep(5)
 
 if __name__ == "__main__":
 	main()
